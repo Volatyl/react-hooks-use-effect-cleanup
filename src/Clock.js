@@ -4,9 +4,13 @@ function Clock() {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    setInterval(() => {
+    const intervalid = setInterval(() => {
       setTime(new Date());
     }, 1000);
+
+    return function () {
+      clearInterval(intervalid);
+    };
   }, []);
 
   return <div>{time.toString()}</div>;
